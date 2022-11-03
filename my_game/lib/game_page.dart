@@ -305,7 +305,9 @@ class _GamePageState extends State<GamePage> {
                   children: [
                     TextButton(
                       onPressed: () {
-                        Navigator.pushNamed(context, '/home');
+                        Navigator.of(context).pop();
+                        Navigator.of(context).pushNamedAndRemoveUntil(
+                            '/home', (Route<dynamic> route) => false);
                       },
                       child: const Text(
                         'Cancel',
@@ -317,15 +319,16 @@ class _GamePageState extends State<GamePage> {
                     TextButton(
                       onPressed: () {
                         var box = Hive.box('Winners');
-                        if (winnerName.isNotEmpty)
+                        if (winnerName.isNotEmpty) {
                           box.add(Winner(
                               name: winnerName,
                               time: timeToString(seconds),
                               moves: movesCount,
                               size: '$crossNumber×$crossNumber'));
-
+                        }
                         Navigator.of(context).pop();
-                        Navigator.pushNamed(context, '/home');
+                        Navigator.of(context).pushNamedAndRemoveUntil(
+                            '/home', (Route<dynamic> route) => false);
                       },
                       child: const Text(
                         'Add',
