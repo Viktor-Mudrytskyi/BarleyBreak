@@ -350,7 +350,7 @@ class _GamePageState extends State<GamePage> {
 
   String timeToString(int seconds) {
     String m =
-        (seconds / ~60 < 10) ? "0${seconds ~/ 60}" : (seconds / ~60).toString();
+        (seconds ~/ 60 < 10) ? "0${seconds ~/ 60}" : (seconds ~/ 60).toString();
     String s =
         (seconds % 60 < 10) ? "0${seconds % 60}" : (seconds % 60).toString();
     return "$m:$s";
