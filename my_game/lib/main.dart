@@ -17,10 +17,10 @@ void main() async{
       routes: {
         '/home': (context) => const Home(),
         '/levels': (context) => const Levels(),
-        '/game5': (context) => GamePage(number: 5),
-        '/game6': (context) => GamePage(number: 6),
-        '/game7': (context) => GamePage(number: 7),
-        '/scores':(context) => Scores(),
+        '/game5': (context) => const GamePage(number: 5),
+        '/game6': (context) => const GamePage(number: 6),
+        '/game7': (context) => const GamePage(number: 7),
+        '/scores':(context) => const Scores(),
       },
     ),
   );
