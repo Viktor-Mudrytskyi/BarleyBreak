@@ -23,43 +23,60 @@ class Scores extends StatelessWidget {
           const SizedBox(
             height: 15.0,
           ),
-          // Row(
-          //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-
-          //   children: const [
-          //     //SizedBox(width: 21.0,),
-          //     Text(
-          //       'Name',
-          //       style: TextStyle(color: Colors.amber, fontSize: 20.0),
-          //     ),
-          //     //SizedBox(width: 11.0,),
-          //     Text(
-          //       'Time',
-          //       style: TextStyle(color: Colors.amber, fontSize: 20.0),
-          //     ),
-          //     Text(
-          //       'Moves',
-          //       style: TextStyle(color: Colors.amber, fontSize: 20.0),
-          //     ),
-          //     Text(
-          //       'Size',
-          //       style: TextStyle(color: Colors.amber, fontSize: 20.0),
-          //     ),
-          //   ],
-          // ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: const [
+              //SizedBox(width: 21.0,),
+              Text(
+                'Name',
+                style: TextStyle(color: Colors.amber, fontSize: 20.0),
+              ),
+              //SizedBox(width: 11.0,),
+              Text(
+                'Time',
+                style: TextStyle(color: Colors.amber, fontSize: 20.0),
+              ),
+              Text(
+                'Moves',
+                style: TextStyle(color: Colors.amber, fontSize: 20.0),
+              ),
+              Text(
+                'Size',
+                style: TextStyle(color: Colors.amber, fontSize: 20.0),
+              ),
+            ],
+          ),
           Expanded(
-            child: ListView(
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    nameColumn(),
-                    timeColumn(),
-                    movesColumn(),
-                    sizeColumn(),
-                  ],
-                )
-              ],
+            child: ListView.builder(
+              itemCount: box.length,
+              itemBuilder: ((context, index) {
+                String name = (box.getAt(index) as Winner).name;
+                for (int i = name.length; i < 10; i++) {
+                  name += ' ';
+                  return Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        name,
+                        style: textStyle,
+                      ),
+                      Text(
+                        (box.getAt(i) as Winner).time,
+                        style: textStyle,
+                      ),
+                      Text(
+                        '${(box.getAt(i) as Winner).moves}',
+                        style: textStyle,
+                      ),
+                      Text(
+                        name,
+                        style: textStyle,
+                      ),
+                    ],
+                  );
+                }
+                return const SizedBox();
+              }),
             ),
           ),
         ],
@@ -67,52 +84,69 @@ class Scores extends StatelessWidget {
     );
   }
 
-  Column nameColumn() {
-    List<Text> list = [];
-    for (int i = 0; i < box.length; i++) {
-      list.add(Text(
-        (box.getAt(i) as Winner).name,
-        style: textStyle,
-      ));
-    }
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: list,
-    );
-  }
+  // Column nameColumn() {
+  //   List<Text> list = [];
+  //   for (int i = 0; i < box.length; i++) {
+  //     list.add(
+  //       Text(
+  //         (box.getAt(i) as Winner).name,
+  //         style: textStyle,
+  //       ),
+  //     );
+  //   }
+  //   return Column(
+  //     mainAxisAlignment: MainAxisAlignment.start,
+  //     crossAxisAlignment: CrossAxisAlignment.start,
+  //     children: list,
+  //   );
+  // }
 
-  Column timeColumn() {
-    List<Text> list = [];
-    for (int i = 0; i < box.length; i++) {
-      list.add(Text(
-        (box.getAt(i) as Winner).time,
-        style: textStyle,
-      ));
-    }
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: list,
-    );
-  }
+  // Column timeColumn() {
+  //   List<Text> list = [];
+  //   for (int i = 0; i < box.length; i++) {
+  //     list.add(Text(
+  //       (box.getAt(i) as Winner).time,
+  //       style: textStyle,
+  //     ));
+  //   }
+  //   return Column(
+  //     mainAxisAlignment: MainAxisAlignment.start,
+  //     crossAxisAlignment: CrossAxisAlignment.start,
+  //     children: list,
+  //   );
+  // }
 
-  Column movesColumn() {
-    List<Text> list = [];
-    for (int i = 0; i < box.length; i++) {
-      list.add(Text(
-        '${(box.getAt(i) as Winner).moves}',
-        style: textStyle,
-      ));
-    }
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: list,
-    );
-  }
+  // Column movesColumn() {
+  //   List<Text> list = [];
+  //   for (int i = 0; i < box.length; i++) {
+  //     list.add(Text(
+  //       '${(box.getAt(i) as Winner).moves}',
+  //       style: textStyle,
+  //     ));
+  //   }
+  //   return Column(
+  //     mainAxisAlignment: MainAxisAlignment.start,
+  //     crossAxisAlignment: CrossAxisAlignment.start,
+  //     children: list,
+  //   );
+  // }
 
-  Column sizeColumn() {
+  // Column sizeColumn() {
+  //   List<Text> list = [];
+  //   for (int i = 0; i < box.length; i++) {
+  //     list.add(Text(
+  //       (box.getAt(i) as Winner).size,
+  //       style: textStyle,
+  //     ));
+  //   }
+  //   return Column(
+  //     mainAxisAlignment: MainAxisAlignment.start,
+  //     crossAxisAlignment: CrossAxisAlignment.start,
+  //     children: list,
+  //   );
+  // }
+
+  Row winners() {
     List<Text> list = [];
     for (int i = 0; i < box.length; i++) {
       list.add(Text(
@@ -120,9 +154,8 @@ class Scores extends StatelessWidget {
         style: textStyle,
       ));
     }
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.start,
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: list,
     );
   }
